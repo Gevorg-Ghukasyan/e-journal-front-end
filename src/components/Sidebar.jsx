@@ -14,9 +14,13 @@ export default function Sidebar({ items, jwt, collapsed, onToggle, onSelect }) {
   const location = useLocation()
 
   return (
-    <aside className={collapsed ? 'sidebar collapsed' : 'sidebar'}>
+    <aside className={`sidebar ${collapsed ? 'collapsed' : ''}`} aria-expanded={!collapsed}>
       <div className="sidebar-top">
-        <button className="collapse-btn" onClick={() => onToggle(!collapsed)}>
+        <button
+          className="collapse-btn"
+          onClick={() => onToggle(!collapsed)}
+          aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+        >
           {collapsed ? '➡' : '⬅'}
         </button>
       </div>
@@ -29,15 +33,14 @@ export default function Sidebar({ items, jwt, collapsed, onToggle, onSelect }) {
             title={item.label}
           >
             <span className="menu-icon" aria-hidden="true">{icons[item.id] || '•'}</span>
-            {!collapsed && item.label}
+            <span className="menu-label">{item.label}</span>
           </button>
         ))}
       </nav>
       <div className={`sidebar-meta ${collapsed ? 'hidden' : ''}`}>
-        <h3>JWT Authentication</h3>
+        <h3>Session token</h3>
         {jwt ? (
           <>
-            <p>iss: {jwt.iss}</p>
             <p>sub: {jwt.sub}</p>
             <p>roles: {jwt.realm_access.roles.join(', ')}</p>
             <p>exp: {new Date(jwt.exp * 1000).toLocaleString()}</p>

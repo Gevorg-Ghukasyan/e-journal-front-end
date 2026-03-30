@@ -7,6 +7,7 @@ import StudentPage from './pages/StudentPage'
 import TeacherPage from './pages/TeacherPage'
 import JournalPage from './pages/JournalPage'
 import OverviewPage from './pages/OverviewPage'
+import UsersPage from './pages/UsersPage'
 import StudentUsersPage from './pages/StudentUsersPage'
 import ProfessorUsersPage from './pages/ProfessorUsersPage'
 import AdminUsersPage from './pages/AdminUsersPage'
@@ -69,6 +70,9 @@ function App() {
         courseTitle: course?.title || 'N/A',
         studentName: student?.name || 'N/A',
         finalScore: calculateFinal(entry, course),
+        source: entry.source || 'mock-service',
+        status: entry.status || 'confirmed',
+        recordedAt: entry.recordedAt || entry.date,
       }
     })
   }, [visibleJournal])
@@ -100,7 +104,7 @@ function App() {
     <Router>
       <Layout
         title="E-Journal"
-        subtitle="Mock JWT Auth | Arch & Econ Analytics"
+        subtitle="Institutional E-Journal | Mock JWT session"
         currentUser={currentUser}
         onLogout={onLogout}
         menuItems={menuItems}

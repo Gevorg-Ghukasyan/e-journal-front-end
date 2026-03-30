@@ -15,6 +15,8 @@ export default function JournalPage({ journal }) {
             <th>Bonus</th>
             <th>Penalty</th>
             <th>Final</th>
+            <th>Status</th>
+            <th>Source</th>
           </tr>
         </thead>
         <tbody>
@@ -28,6 +30,8 @@ export default function JournalPage({ journal }) {
               <td>{entry.bonus}</td>
               <td>{entry.penalty}</td>
               <td>{entry.finalScore}</td>
+              <td>{entry.status}</td>
+              <td>{entry.source}</td>
             </tr>
           ))}
         </tbody>
