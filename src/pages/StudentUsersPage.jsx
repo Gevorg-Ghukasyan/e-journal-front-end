@@ -1,7 +1,6 @@
 import React from 'react'
 
-export default function StudentUsersPage({ users }) {
-  const students = users.filter(u => u.role === 'STUDENT')
+export default function StudentUsersPage() {
   return (
     <div className="panel">
       <h2>Students</h2>
@@ -9,16 +8,14 @@ export default function StudentUsersPage({ users }) {
         <thead>
           <tr>
             <th>Name</th>
+            <th>Email</th>
             <th>ID</th>
           </tr>
         </thead>
         <tbody>
-          {students.map((u) => (
-            <tr key={u.id}>
-              <td>{u.name}</td>
-              <td>{u.id}</td>
-            </tr>
-          ))}
+          <tr>
+            <td colSpan="3" style={{ textAlign: 'center' }}>Loading student data from backend...</td>
+          </tr>
         </tbody>
       </table>
     </div>

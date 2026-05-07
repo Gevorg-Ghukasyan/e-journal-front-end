@@ -1,7 +1,6 @@
 import React from 'react'
 
-export default function AdminUsersPage({ users }) {
-  const admins = users.filter(u => u.role === 'ADMIN')
+export default function AdminUsersPage() {
   return (
     <div className="panel admin-panel">
       <div className="admin-hero">
@@ -9,8 +8,8 @@ export default function AdminUsersPage({ users }) {
         <p>Golden governance console for institute operations, security oversight, and session management.</p>
       </div>
       <div className="admin-summary">
-        <div className="summary-item">Active admin accounts: {admins.length}</div>
         <div className="summary-item">System integrity: nominal</div>
+        <div className="summary-item">Connected to backend API</div>
       </div>
       <table className="admin-table">
         <thead>
@@ -23,15 +22,9 @@ export default function AdminUsersPage({ users }) {
           </tr>
         </thead>
         <tbody>
-          {admins.map((u) => (
-            <tr key={u.id}>
-              <td>{u.name}</td>
-              <td>{u.email || 'n/a'}</td>
-              <td>{u.department || 'Operations'}</td>
-              <td>{u.role}</td>
-              <td>{u.id}</td>
-            </tr>
-          ))}
+          <tr>
+            <td colSpan="5" style={{ textAlign: 'center' }}>Loading admin data from backend...</td>
+          </tr>
         </tbody>
       </table>
     </div>

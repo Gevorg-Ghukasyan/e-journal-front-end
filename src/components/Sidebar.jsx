@@ -1,5 +1,6 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext'
 
 const icons = {
   main: '🏠',
@@ -10,8 +11,9 @@ const icons = {
   users: '👥',
 }
 
-export default function Sidebar({ items, jwt, collapsed, onToggle, onSelect }) {
+export default function Sidebar({ items, collapsed, onToggle, onSelect }) {
   const location = useLocation()
+  const { currentUser } = useAuth()
 
   return (
     <aside className={`sidebar ${collapsed ? 'collapsed' : ''}`} aria-expanded={!collapsed}>
@@ -38,12 +40,12 @@ export default function Sidebar({ items, jwt, collapsed, onToggle, onSelect }) {
         ))}
       </nav>
       <div className={`sidebar-meta ${collapsed ? 'hidden' : ''}`}>
-        <h3>Session token</h3>
-        {jwt ? (
+        <h3>Session info</h3>
+        {currentUser ? (
           <>
-            <p>sub: {jwt.sub}</p>
-            <p>roles: {jwt.realm_access.roles.join(', ')}</p>
-            <p>exp: {new Date(jwt.exp * 1000).toLocaleString()}</p>
+            <p>user: {currentUser.userName}</p>
+            <p>roles: {currentUser.roles?.join(', ') || 'N/A'}</p>
+            <p>Status: authenticated</p>
           </>
         ) : (
           <p>Status: not authenticated</p>

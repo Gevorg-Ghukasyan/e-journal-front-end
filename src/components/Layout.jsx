@@ -4,7 +4,7 @@ import Header from './Header'
 import Sidebar from './Sidebar'
 import Footer from './Footer'
 
-export default function Layout({ title, subtitle, currentUser, onLogout, menuItems, jwt, children, sidebarCollapsed, onToggleSidebar }) {
+export default function Layout({ menuItems, children, sidebarCollapsed, setSidebarCollapsed }) {
   const navigate = useNavigate()
 
   const handleMenuSelect = (path) => {
@@ -13,9 +13,9 @@ export default function Layout({ title, subtitle, currentUser, onLogout, menuIte
 
   return (
     <div className="app-shell">
-      <Header title={title} subtitle={subtitle} currentUser={currentUser} onLogout={onLogout} />
+      <Header title="E-Journal" subtitle="Institutional E-Journal" />
       <div className={`layout ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
-        <Sidebar items={menuItems} jwt={jwt} collapsed={sidebarCollapsed} onToggle={onToggleSidebar} onSelect={handleMenuSelect} />
+        <Sidebar items={menuItems} collapsed={sidebarCollapsed} onToggle={setSidebarCollapsed} onSelect={handleMenuSelect} />
         <main className="content">{children}</main>
       </div>
       <Footer />

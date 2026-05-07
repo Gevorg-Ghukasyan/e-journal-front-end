@@ -1,37 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext'
 
-export default function StudentPage({ currentUser, courses, journal }) {
+export default function StudentPage() {
+  const navigate = useNavigate()
+  const { currentUser } = useAuth()
+
+  useEffect(() => {
+    // Redirect to courses page
+    navigate('/student/courses', { replace: true })
+  }, [navigate])
+
   return (
     <div className="panel">
-      <h2>Student Dashboard</h2>
-      <p>Hello, {currentUser?.name}</p>
-      <h3>Your enrolled courses</h3>
-      <ul>
-        {courses.map((c) => (
-          <li key={c.id}>{c.title} ({c.semester})</li>
-        ))}
-      </ul>
-      <h3>Journal entries</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Course</th>
-            <th>Topic</th>
-            <th>Date</th>
-            <th>Final</th>
-          </tr>
-        </thead>
-        <tbody>
-          {journal.map((entry) => (
-            <tr key={entry.id}>
-              <td>{entry.courseTitle}</td>
-              <td>{entry.topic}</td>
-              <td>{entry.date}</td>
-              <td>{entry.finalScore}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <p>Redirecting to courses...</p>
     </div>
   )
 }

@@ -1,9 +1,12 @@
 import React from 'react'
 
-export default function JournalPage({ journal }) {
+export default function JournalPage() {
   return (
     <div className="panel">
       <h2>Journal Overview</h2>
+      <p>Journal entries will be displayed here based on your role and access permissions.</p>
+      <p>For students: Your submission history</p>
+      <p>For teachers: All submissions from your courses</p>
       <table>
         <thead>
           <tr>
@@ -11,29 +14,14 @@ export default function JournalPage({ journal }) {
             <th>Course</th>
             <th>Student</th>
             <th>Topic</th>
-            <th>Raw</th>
-            <th>Bonus</th>
-            <th>Penalty</th>
-            <th>Final</th>
+            <th>Grade</th>
             <th>Status</th>
-            <th>Source</th>
           </tr>
         </thead>
         <tbody>
-          {journal.map((entry) => (
-            <tr key={entry.id}>
-              <td>{entry.date}</td>
-              <td>{entry.courseTitle}</td>
-              <td>{entry.studentName}</td>
-              <td>{entry.topic}</td>
-              <td>{entry.rawScore}</td>
-              <td>{entry.bonus}</td>
-              <td>{entry.penalty}</td>
-              <td>{entry.finalScore}</td>
-              <td>{entry.status}</td>
-              <td>{entry.source}</td>
-            </tr>
-          ))}
+          <tr>
+            <td colSpan="6" style={{ textAlign: 'center' }}>No journal entries available</td>
+          </tr>
         </tbody>
       </table>
     </div>

@@ -1,24 +1,21 @@
 import React from 'react'
 
-export default function ProfessorUsersPage({ users }) {
-  const professors = users.filter(u => u.role === 'PROFESSOR')
+export default function ProfessorUsersPage() {
   return (
     <div className="panel">
-      <h2>Professors</h2>
+      <h2>Teachers</h2>
       <table>
         <thead>
           <tr>
             <th>Name</th>
+            <th>Email</th>
             <th>ID</th>
           </tr>
         </thead>
         <tbody>
-          {professors.map((u) => (
-            <tr key={u.id}>
-              <td>{u.name}</td>
-              <td>{u.id}</td>
-            </tr>
-          ))}
+          <tr>
+            <td colSpan="3" style={{ textAlign: 'center' }}>Loading teacher data from backend...</td>
+          </tr>
         </tbody>
       </table>
     </div>

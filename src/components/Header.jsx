@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext'
 
 const notificationItems = [
   'Architecture milestone achieved',
@@ -6,8 +8,15 @@ const notificationItems = [
   'New Journal entry requires review',
 ]
 
-export default function Header({ title, subtitle, currentUser, onLogout }) {
+export default function Header({ title, subtitle, onLogout }) {
   const [showNotifications, setShowNotifications] = useState(false)
+  const { currentUser, logout } = useAuth()
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    logout()
+    navigate('/login')
+  }
 
   return (
     <header className="app-header">
@@ -43,8 +52,12 @@ export default function Header({ title, subtitle, currentUser, onLogout }) {
         <div className="user-wrapper">
           {currentUser ? (
             <>
-              <div className="user-badge"><span aria-hidden="true">👤</span> {currentUser.name} ({currentUser.role})</div>
-              <button className="ghost logout" onClick={onLogout}><span aria-hidden="true">🚪</span> Logout</button>
+              <div className="user-badge">
+                <span aria-hidden="true">👤</span> {currentUser.roles?.[0]?.toUpperCase() || 'USER'}: {currentUser.userName}
+              </div>
+              <button className="ghost logout" onClick={handleLogout}>
+                <span aria-hidden="true">🚪</span> Logout
+              </button>
             </>
           ) : (
             <span className="user-badge"><span aria-hidden="true">👥</span> Guest</span>
